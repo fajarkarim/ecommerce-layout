@@ -1,23 +1,23 @@
-Customer = require('../models/item')
+Item = require('../models/item')
 
 var findAll = function (req, res) {
   Item.find({}, handleFind)
-  function handleFind(err, books) {
-    err ? res.status(500).send(err) : res.send(books)
+  function handleFind(err, items) {
+    err ? res.status(500).send(err) : res.send(items)
   }
 }
 
 var findOne = function (req, res) {
   Item.find({_id : req.params.id}, handleFindOne)
-  function handleFindOne(err, book) {
-    err ? res.status(500).send(err) : res.send(book)
+  function handleFindOne(err, item) {
+    err ? res.status(500).send(err) : res.send(item)
   }
 }
 
 var findByCategory = function (req, res) {
   Item.find({category : req.params.category}, handleFindByCategory)
-  function handleFindByCategory(err, books) {
-    err ? res.status(500).send(err) : res.send(books)
+  function handleFindByCategory(err, items) {
+    err ? res.status(500).send(err) : res.send(items)
   }
 }
 
@@ -30,8 +30,8 @@ var create = function (req, res) {
     price : req.body.price
   })
   Item.save(handleCreate)
-  function handleCreate(err, book) {
-    err ? res.status(500).send(err) : res.send(`${book.name} created`)
+  function handleCreate(err, item) {
+    err ? res.status(500).send(err) : res.send(`${item.name} created`)
   }
 }
 
